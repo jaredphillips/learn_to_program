@@ -173,7 +173,55 @@ puts var2
 
 # Chapter 5 - Mixing it up
 
+# We've looked at a few kinds of objects (integers, floats, strings). Now it's
+# time to put them all together.  
+# Adding integers and strings doesn't work because you can't add them 
+# together. 
 
+ # variable1 = 2
+ # variable2 = '5'
+ # puts variable1 + variable2
+ # Sting can't be coerced into Fixnumb(TypeError)
 
+# To get the string version of an object, we simply write .to_s after it:
 
+# variable1 = 2
+# variable2 = '5'
+# puts variable1.to_s + variable2
+# 25
+
+# Similarly, .to_i gives the integer version of an object and .to_f gives 
+# float version. 
+
+var1 = 2
+var2 = '5'
+puts
+puts var1.to_s + var2
+puts var1 + var2.to_i
+
+# Lets try some more interesting examples (and a few weird ones)
+
+puts 
+puts '15'.to_f
+puts '99.999'.to_f
+puts '99.999'.to_i
+puts ''
+puts '5 is my favourite number!'.to_i
+puts 'Who asked you about 5 or whatever?'.to_i # This one surprised me. 
+puts 'Your momma did'.to_f # Ruby returns 0 if it doesn't understand. 
+puts ''
+puts 'stringy'.to_s
+puts 3.to_i
+
+# 5.2 Another Look at Puts
+
+puts 20
+puts 20.to_s
+puts 20
+
+# All return the same thing, 20. The reason being is that puts is literally 
+# "put string". It uses .to_s to retrieve the string version of that object
+# Using puts will always return the string version of that object. 
+
+# 5.3 The gets Method
 
