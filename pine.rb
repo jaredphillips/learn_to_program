@@ -18,6 +18,7 @@ puts 1 + 2
 
 # For addition and subtraction, we use + and -. For multiplication, we use *
 # and for division we use /. 
+
 puts
 puts 1.0 + 2.0
 puts 2.0 * 3.0
@@ -117,7 +118,60 @@ puts 'up\down'
 
 # Chapter 4 - Variables and Assignment
 
+# So far we've only put's a string or a number and once we've puts it, its 
+# gone. What if we wanted to print something twice, we'd have to puts it 
+# twice. It would be nice if we could hold on to that thing and store somewhere.
+# That's where variables are for. Programmers call this type of thing, assignment. 
+# A variable name can usually be just about any sequence of letters and numbers, 
+# but in Ruby the first character of this name needs to be lowercased. 
 
+puts
+my_string = '...you can say that again...'
+puts my_string
+puts my_string
+
+# You can think of the variable my_string as 'pointing to' the string. 
+# Slightly more motivated example:
+
+puts
+name = 'Anya Christina Emmauneulla Jenkins Harris'
+puts 'My name is ' + name + '.'
+puts 'Wow! ' + name
+puts 'is a really long name!'
+
+# Also, just as we can assign an object to a variable, we can reassign a different
+# object to that variable. (This is why we call them variables, what they point to 
+# can vary!). Notice how Chris refers to the string as an object. 
+
+puts 
+composer = 'Mozart'
+puts composer + ' was "da bomb" in his day.'
+
+composer = 'Beethoven'
+puts 'But I prefer ' + composer + ', personally.'
+
+# Of course, variables can point to any kind of object, not just strings. 
+
+puts 
+my_own_var = 'just another ' + 'string'
+puts my_own_var
+
+my_own_var = 5 * (1+2)
+puts my_own_var
+
+# Variables can point to just about anything, except other variables. But what
+# happens if we try?
+
+var1 = 8
+var2 = var1
+puts var1 
+puts var2
+puts ''
+var1 = 'eight'
+puts var1
+puts var2
+
+# Chapter 5 - Mixing it up
 
 
 
