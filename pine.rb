@@ -225,3 +225,73 @@ puts 20
 
 # 5.3 The gets Method
 
+# Similar to the puts method, it puts strings. The gets method, retrieves strings.
+# Lets try them together. 
+
+# puts gets - repeats the string you just typed in. 
+
+# 5.5 The chomp Method
+
+# puts 
+# puts 'Hello there, and what\'s your name?'
+# name = gets.chomp
+# puts 'Your name is ' + name + '? What a lovely name!'
+# puts 'Pleased to meet you, ' + name + '. :)'
+
+# 5.6 A Few Things to Try
+
+# Full name greeting. Write a program that asks for a person’s first name, 
+# then middle, and then last. Finally, it should greet the person using 
+# their full name. 
+
+# puts 
+# puts "Hey, what's your first name?"
+# first = gets.chomp
+# puts "What's your middle name?"
+# middle = gets.chomp
+# puts "And finally, what's your last name?"
+# last = gets.chomp
+# puts "Well then, #{first} #{middle} #{last}, very nice to meet you" 
+
+# Bigger, better favorite number. Write a program that asks for a person’s 
+# favorite number. Have your program add 1 to the number, and then suggest
+# the result as a bigger and better favorite number. (Do be tactful about 
+# it, though.)
+
+# puts 
+# puts "What's your favourite number?"
+# number = gets.chomp.to_i
+# puts "I have a suggestion for a better favourite number"
+# puts "Do you want to hear it?"
+# answer = gets.chomp.downcase
+# unless answer == 'yes' 
+# 	puts "Please, can I tell you the number?"
+# else answer == 'yes'
+# 	puts "Cool, let me think...#{number} is a pretty good number"
+# 	puts
+# 	puts "How bout #{number + 1}. That's a pretty good number, uh?"
+# end
+
+# 5.7 Mind Your Variables
+
+# When writing a program, try and have a good feel for what object each 
+# variable is pointing to. It's important to keep track of what is an
+# integer or string or whatever. 
+# Its also important to name your variables with names that makes it easy
+# to know what they are at a glance. I already try to do this, but it's 
+# good to remember. 
+# Its easy to get frustrated when your programs have errors, but try not
+# to think of them as errors. Think of them instead as the pathetic attempts
+# of a socially inept non-native English speaker (your computer) asking for 
+# help. 
+
+# Chapter 6 - More About Methods
+
+
+
+
+
+
+
+
+
