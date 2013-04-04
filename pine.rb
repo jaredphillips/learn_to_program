@@ -4,7 +4,7 @@
 
 # Chapter 2 - Numbers
 
-puts 1 + 2
+# puts 1 + 2
 
 # In most programming languages, numbers without decimal points
 # are called integers, and numbers with decimal points are usually
@@ -19,23 +19,23 @@ puts 1 + 2
 # For addition and subtraction, we use + and -. For multiplication, we use *
 # and for division we use /. 
 
-puts
-puts 1.0 + 2.0
-puts 2.0 * 3.0
-puts 5.0 - 8.0
-puts 9.0 / 2.0
-puts
-puts 1+2
-puts 2*3
-puts 5-8
-puts 9/2
+# puts
+# puts 1.0 + 2.0
+# puts 2.0 * 3.0
+# puts 5.0 - 8.0
+# puts 9.0 / 2.0
+# puts
+# puts 1+2
+# puts 2*3
+# puts 5-8
+# puts 9/2
 
 # When you do arithmetic with integers, you'll get integer answers. When
 # your computer can't get the "right" answer, it always rounds down.
 
-puts 
-puts 5 * (12-8) + -15
-puts 98 + (59872 / (13*8)) * -51
+# puts 
+# puts 5 * (12-8) + -15
+# puts 98 + (59872 / (13*8)) * -51
 
 # 2.5 A Few Things to Try
 
@@ -45,16 +45,16 @@ puts 98 + (59872 / (13*8)) * -51
  # Your age in seconds.
  # Our dear author's age 
 
-puts 
-puts "Hours in Year"
-puts 24 * 365
-puts "Minutes in a Decade"
-puts (60 * 24) * (365 * 10 + 2)
-puts "My age in seconds"
-puts (60 * 24) * 365 * 34
-puts "Our dear author's age"
-puts 1025000000 / 60 / 60 / 24 / 365
-puts 800000000 / 60 / 60 / 24 / 365
+# puts 
+# puts "Hours in Year"
+# puts 24 * 365
+# puts "Minutes in a Decade"
+# puts (60 * 24) * (365 * 10 + 2)
+# puts "My age in seconds"
+# puts (60 * 24) * 365 * 34
+# puts "Our dear author's age"
+# puts 1025000000 / 60 / 60 / 24 / 365
+# puts 800000000 / 60 / 60 / 24 / 365
 
 # Chapter 3 - Letters
 
@@ -62,20 +62,20 @@ puts 800000000 / 60 / 60 / 24 / 365
 # Strings can have punctuation, digits, symbols and even spaces
 # in them...more than just letters. 
 
-puts 
-puts 'Hello, world!'
-puts ''
-puts 'Good-bye'
+# puts 
+# puts 'Hello, world!'
+# puts ''
+# puts 'Good-bye'
 
 # You can add strings...
 
-puts 'I like' + 'apple pie'
-puts 'I like ' + 'apple pie'
+# puts 'I like' + 'apple pie'
+# puts 'I like ' + 'apple pie'
 
 # You can also multiply strings
 
-puts
-puts "blink " * 4
+# puts
+# puts "blink " * 4
 
 # Before we get any further, we should make sure that we understand the
 # difference between numbers and digits. 12 is a number, but '12' is a
@@ -83,15 +83,15 @@ puts "blink " * 4
 
 # Let's play around with this for a while:
 
-puts 
-puts 12 + 12
-puts '12' + '12'
-puts '12 + 12'
+# puts 
+# puts 12 + 12
+# puts '12' + '12'
+# puts '12 + 12'
 
-puts 
-puts 2 * 5
-puts '2' * 5
-puts '2 * 5'
+# puts 
+# puts 2 * 5
+# puts '2' * 5
+# puts '2 * 5'
 
 # puts '12' + 12
 # <TypeError: can't convert Fixnumb into String>
@@ -103,18 +103,18 @@ puts '2 * 5'
 
 # Well, that won't work. We have to 'escape' the apostrophe, like this:
 
-puts
-puts 'You\'re swell!'
+# puts
+# puts 'You\'re swell!'
 
 # The backslash is the escape character. Let's see a few examples of 
 # escaping in strings:
 
-puts 
-puts "Escaping Examples"
-puts 'You\'re swell!'
-puts 'backslash at the end of a string: \\'
-puts 'up\\down'
-puts 'up\down'
+# puts 
+# puts "Escaping Examples"
+# puts 'You\'re swell!'
+# puts 'backslash at the end of a string: \\'
+# puts 'up\\down'
+# puts 'up\down'
 
 # Chapter 4 - Variables and Assignment
 
@@ -125,51 +125,51 @@ puts 'up\down'
 # A variable name can usually be just about any sequence of letters and numbers, 
 # but in Ruby the first character of this name needs to be lowercased. 
 
-puts
-my_string = '...you can say that again...'
-puts my_string
-puts my_string
+# puts
+# my_string = '...you can say that again...'
+# puts my_string
+# puts my_string
 
 # You can think of the variable my_string as 'pointing to' the string. 
 # Slightly more motivated example:
 
-puts
-name = 'Anya Christina Emmauneulla Jenkins Harris'
-puts 'My name is ' + name + '.'
-puts 'Wow! ' + name
-puts 'is a really long name!'
+# puts
+# name = 'Anya Christina Emmauneulla Jenkins Harris'
+# puts 'My name is ' + name + '.'
+# puts 'Wow! ' + name
+# puts 'is a really long name!'
 
 # Also, just as we can assign an object to a variable, we can reassign a different
 # object to that variable. (This is why we call them variables, what they point to 
 # can vary!). Notice how Chris refers to the string as an object. 
 
-puts 
-composer = 'Mozart'
-puts composer + ' was "da bomb" in his day.'
+# puts 
+# composer = 'Mozart'
+# puts composer + ' was "da bomb" in his day.'
 
-composer = 'Beethoven'
-puts 'But I prefer ' + composer + ', personally.'
+# composer = 'Beethoven'
+# puts 'But I prefer ' + composer + ', personally.'
 
 # Of course, variables can point to any kind of object, not just strings. 
 
-puts 
-my_own_var = 'just another ' + 'string'
-puts my_own_var
+# puts 
+# my_own_var = 'just another ' + 'string'
+# puts my_own_var
 
-my_own_var = 5 * (1+2)
-puts my_own_var
+# my_own_var = 5 * (1+2)
+# puts my_own_var
 
 # Variables can point to just about anything, except other variables. But what
 # happens if we try?
 
-var1 = 8
-var2 = var1
-puts var1 
-puts var2
-puts ''
-var1 = 'eight'
-puts var1
-puts var2
+# var1 = 8
+# var2 = var1
+# puts var1 
+# puts var2
+# puts ''
+# var1 = 'eight'
+# puts var1
+# puts var2
 
 # Chapter 5 - Mixing it up
 
@@ -193,31 +193,31 @@ puts var2
 # Similarly, .to_i gives the integer version of an object and .to_f gives 
 # float version. 
 
-var1 = 2
-var2 = '5'
-puts
-puts var1.to_s + var2
-puts var1 + var2.to_i
+# var1 = 2
+# var2 = '5'
+# puts
+# puts var1.to_s + var2
+# puts var1 + var2.to_i
 
 # Lets try some more interesting examples (and a few weird ones)
 
-puts 
-puts '15'.to_f
-puts '99.999'.to_f
-puts '99.999'.to_i
-puts ''
-puts '5 is my favourite number!'.to_i
-puts 'Who asked you about 5 or whatever?'.to_i # This one surprised me. 
-puts 'Your momma did'.to_f # Ruby returns 0 if it doesn't understand. 
-puts ''
-puts 'stringy'.to_s
-puts 3.to_i
+# puts 
+# puts '15'.to_f
+# puts '99.999'.to_f
+# puts '99.999'.to_i
+# puts ''
+# puts '5 is my favourite number!'.to_i
+# puts 'Who asked you about 5 or whatever?'.to_i # This one surprised me. 
+# puts 'Your momma did'.to_f # Ruby returns 0 if it doesn't understand. 
+# puts ''
+# puts 'stringy'.to_s
+# puts 3.to_i
 
 # 5.2 Another Look at Puts
 
-puts 20
-puts 20.to_s
-puts 20
+# puts 20
+# puts 20.to_s
+# puts 20
 
 # All return the same thing, 20. The reason being is that puts is literally 
 # "put string". It uses .to_s to retrieve the string version of that object
@@ -287,8 +287,91 @@ puts 20
 
 # Chapter 6 - More About Methods
 
+# Technical terms, methods are the things that do stuff. Its the action performed 
+# on the object 
 
+# puts
+# puts self
 
+# 6.1 Fancy String Methods
+
+# Let's learn a few fun string methods. The first one is reverse.
+
+# variable1 = 'stop'
+# variable2 = 'deliver repaid desserts'
+# variable3 = '......TCELES B HSUP A magic spell'
+
+# puts variable1.reverse
+# puts variable2.reverse
+# puts variable3.reverse
+# puts variable1
+# puts variable2
+# puts variable3
+
+# As you can see, .reverse doesn't change the original string. It makes a 
+# new backward version of the string. 
+# Another string method is .length, which tells us the number of chararacters
+# (including spaces) in the string:
+
+# puts 
+# puts 'What is your full name?'
+# name = gets.chomp
+# puts "Did you know that there are #{name.length} characters in your name?"
+
+# A number of string methods can also change the case (upper and lowercase)
+# of your string. .upcase changes every letter to uppercase and downcase changes
+# every letter to lowercase. And finally, capitalize is just like downcase
+# expect it switches the first character to uppercase (if its a letter)
+
+# letters = 'aAbBcCdDeE'
+# puts letters.upcase
+# puts letters.downcase
+# puts letters.swapcase
+# puts letters.capitalize
+# puts ' a'.capitalize
+# puts letters
+
+# As you can see from the puts ' a'.capitalize, it only capitalizes the 
+# first character, not the first letter. Also, we can see that the 
+# original letters string remains the same/untouched.
+# Our last of the fancy string methods deal with fancy visual formatting. 
+# The .center method adds spaces to the beginning and end of your string but 
+# you have to tell it how many you want .center(130). This will give you 130 
+# spaces on each side of the string. 
+
+# line_width = 60
+# puts('Old Mother Hubbard'.center(line_width)) 
+# puts('Sat in her cupboard'.center(line_width)) 
+# puts('Eating her curds and whey'.center(line_width)) 
+# puts('When along came a spider'.center(line_width)) 
+# puts('Who sat down beside her'.center(line_width)) 
+# puts('And scared her poor shoe dog away'.center(line_width)) 
+
+# A Few Things to Try
+
+# • Angry boss. Write an angry boss program that rudely asks what you want. 
+# Whatever you answer, the angry boss should yell it back to you and then fire you. 
+# For example, if you type in I want a raise, it should yell back like this:
+# WHADDAYA MEAN "I WANT A RAISE"?!? YOU'RE FIRED!!
+
+# • Table of contents. Here’s something for you to do in order to play around 
+# 	more with center, ljust, and rjust: write a program that will display a 
+# 	table of contents so that it looks like this:
+
+# Table of Contents
+# Chapter 1:  Getting Started						page  1
+# Chapter 2:  Numbers                   page  9
+# Chapter 3:  Letters  									page 13
+
+# puts "What the hell do you want?"
+# answer = gets.chomp.upcase
+# puts 'WHADDAYA MEAN "' + answer + '" YOU\'RE FIRED!!'
+
+line_width = 50
+puts "Table of Contents".center(40)
+puts "Chapter 1: Getting Started".ljust(0) + "page 1".rjust(line_width - 8)
+puts "Chapter 2: Numbers".ljust(0) + "page 9".rjust(line_width)
+puts "Chapter 1: Letters".ljust(0) + "page 13".rjust(line_width)
 
 
 
