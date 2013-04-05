@@ -367,11 +367,13 @@
 # answer = gets.chomp.upcase
 # puts 'WHADDAYA MEAN "' + answer + '" YOU\'RE FIRED!!'
 
-line_width = 50
-puts "Table of Contents".center(40)
-puts "Chapter 1: Getting Started".ljust(0) + "page 1".rjust(line_width - 8)
-puts "Chapter 2: Numbers".ljust(0) + "page 9".rjust(line_width)
-puts "Chapter 1: Letters".ljust(0) + "page 13".rjust(line_width)
+# line_width = 50
+# puts "Table of Contents".center(40)
+# puts "Chapter 1: Getting Started".ljust(0) + "page 1".rjust(line_width - 8)
+# puts "Chapter 2: Numbers".ljust(0) + "page 9".rjust(line_width)
+# puts "Chapter 1: Letters".ljust(0) + "page 13".rjust(line_width)
+
+
 
 
 
