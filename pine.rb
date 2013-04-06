@@ -448,12 +448,12 @@
 
 # Finally, let's look at the Math object. First some code examples:
 
-puts Math::PI
-puts Math::E 
-puts Math.cos(Math::PI/3)
-puts Math.tan(Math::PI/4)
-puts Math.log(Math::E**2)
-puts ((1 + Math.sqrt(5))/2)
+# puts Math::PI
+# puts Math::E 
+# puts Math.cos(Math::PI/3)
+# puts Math.tan(Math::PI/4)
+# puts Math.log(Math::E**2)
+# puts ((1 + Math.sqrt(5))/2)
 
 # The first thing we notice is the :: notation. Explaining the scope 
 # operator is beyond the scope of this book. 
@@ -464,6 +464,256 @@ puts ((1 + Math.sqrt(5))/2)
 # further than you can calculate them. 
 
 # Chapter 7 - Flow Control
+
+# We've covered a lot of the basics, but this where we breathe life into our
+# programs. After this chapter we will be able to do different things within
+# our programs and have different outcomes.
+
+# 7.1 Comparison Methods
+
+# First, lets try to see whether one object is greater than or less than
+# another. For that we use < or >
+ 
+# puts 1 > 2
+# puts 1 < 2
+
+# Likewise we can also find out whether an object is greater than or equal
+# to another with the methods >= and <=:
+
+# puts 5 >= 5
+# puts 5 <= 4
+
+# And finally we can whether two objects are equal by using == (which
+# means 'Are these equal?') and != (which means 'Not Equal'). Its important
+# not to confuse = with ==. = is for asssigning a variable, and == is for 
+# asking the question are these equal.
+
+# puts 1 == 1
+# puts 2 != 1
+
+# Of course, we can compare strings, too. When comparing strings, Ruby compares
+# lexicographical ordering, which basically means the order they appear in a
+# dictionary. For example, cat comes before dog in the dictionary, so we
+# have this:
+
+# puts 'cat' < 'dog'
+
+# There is a catch though, capital letters. Letters get stored all capital 
+# capital letters first, then small letters. This means that something
+# like 'Xander' comes before 'bug lady'. So make sure you use downcase or
+# upcase before comparing two strings.
+
+# puts 'Xcat'.downcase < 'dog'
+
+# Similarly surprising is this:
+
+# puts 2 < 10
+# puts '2' < '10'
+
+# That last one is confusing. Remember that Ruby is comparing characters and
+# '2' comes after '1'. One last note before we move on: the comparison methods
+# aren't giving us the strings 'true' of 'false', they are giving us the 
+# special objects true and false that represent...well, truth or falsity. True
+# and false are used all the time in a language construct called branching.
+
+# 7.2 Branching
+
+# Branching is a simple concept, but it's extremely powerful. 
+
+# puts "Hello, what's your name?"
+# name = gets.chomp.capitalize
+# puts "Hello #{name}"
+
+# if name == 'Jared'
+# 	puts 'What a lovely name!'
+# end
+
+# And that is branching. If what comes after the if is true, we run the code
+# between the if and the end. If what comes after the if is false, we don't.
+
+# Branching is kind of like coming to a fork in the code: do we take the path
+# for people whose name == 'Jared' or else do we take the other, less cool path.
+# Just like the branches of a tree, you can have branches that themselves 
+# have branches. Here's an example:
+
+# puts 'Hello, and welcome to seventh grade English'
+# puts 'My name is Mrs. Gabbard. And your name is...?'
+# name = gets.chomp
+
+# if name == name.capitalize
+# 	puts "Please take a seat, #{name}"
+# else
+# 	puts "#{name}?, You mean #{name.capitalize}, right?"
+# 	puts "Don't you know how to spell your own name?"
+# 	reply = gets.chomp
+
+# 	if reply.downcase == 'yes'
+# 		puts 'Hmmph! Well, sit down!'
+# 	else
+# 		puts 'GET OUT'
+# 	end
+# end
+
+# 7.3 Looping
+
+# Often, you'll want the computer to do the same thing over and over again. 
+# After all, that's what they're supposed to be good at doing. When you tell
+# a computer to loop something, you also need to tell it to stop (or it won't)
+# One way to do this is by using a 'while' condition. The computer will run
+# this while loop while the condition is true. 
+
+# input = ''
+
+# while input != 'bye'
+# 	puts 'Hi'
+# 	puts input
+# 	input = gets.chomp
+# end
+
+# puts 'Come again soon!'
+
+# Its not a fabulous program, though. For one thing, while tests your condition
+# at the top of the loop. In this case we had to tweak our loop so it could 
+# test there. This made us puts a blank line before we did our first gets.
+# In my mind, it just feels like the gets comes first and the echoing 
+# puts comes later.
+
+# while true 
+# 	input = gets.chomp
+# 	puts input
+# 	if input == 'bye'
+# 		break
+# 	end
+# end
+
+# puts 'Come again soon'
+
+# My refactor
+
+# while true 
+# 	input = gets.chomp
+# 	puts input
+# 	break if input == 'bye'
+# end
+
+# puts 'Come again soon'
+
+# Loops are lovely things, but they are like high-maintenance girlfriends or
+# bubble gum, they cause big problems if handled improperly. 
+# Before we start playing around with loops, let's learn a few things to make
+# our job easier. 
+
+# 7.4 A Little Bit of Logic
+
+# Chris' wife didn't like this program so we are going to rewrite it. 
+
+# puts "Hello, what's your name?"
+# name = gets.chomp
+
+# if (name == 'Chris') || (name == 'Katy')
+# 	puts "What a lovely name"
+# else
+#   puts "Hello #{name}"
+# end
+
+# To make this work, we used ||, which is how we say 'or' in most programming
+# languages. The english word "or" does work but shouldn't be used in 
+# a boolean context.
+
+# Just to make sure everything is well cemented for you, let's look at one
+# more example before you go it alone. 
+
+# while true
+# 	puts "What would like to do ask C to do?"
+# 	request = gets.chomp
+
+# 	puts 'You say, "C, please' + request + '"'
+
+# 	puts 'C\'s response:'
+# 	puts '"Papa, ' + request + ', too."'
+# 	puts '"Mama, ' + request + ', too."'
+# 	puts '"Ruby, ' + request + ', too."'
+# 	puts '"Nono, ' + request + ', too."'
+# 	puts '"Emma, ' + request + ', too."'
+# 	puts '"Jared, ' + request + ', too."'
+# 	puts '"Rachel, ' + request + ', too."'
+
+#   if request == 'stop'
+# 	  break 
+#   end
+# end
+
+# 7.5 A Few Things to Try
+
+# • “99 Bottles of Beer on the Wall.” Write a program that prints out the 
+# lyrics to that beloved classic, “99 Bottles of Beer on the Wall.”
+
+# number = 100
+
+# while number >= 1
+# 	puts "#{number} bottles of beer on the wall, #{number} bottles of beer"
+# 	puts "Take one down and pass it around"
+# 	number = number - 1
+# 	puts "...(sound of drinking)..."
+# 	puts "#{number} bottles of beer on the wall"
+# 	break if number == 2 
+# end
+
+# puts "One bottle of beer of the wall, one bottle of beer"
+# puts "Take it down, pass it around."
+# puts "And now its time for bed!"
+
+# • Deaf grandma. Whatever you say to Grandma (whatever you type in), she 
+# should respond with this:
+#      HUH?!  SPEAK UP, SONNY! unless you shout it (type in all capitals). 
+#      If you shout, she can hear you (or at least she thinks so) and 
+#      yells back: NO, NOT SINCE 1938!
+
+# To make your program really believable, have Grandma shout a different 
+# year each time, maybe any year at random between 1930 and 1950. 
+
+# (This part is optional and would be much easier if you read the section 
+# 	on Ruby’s random number generator on page 38.) You can’t stop talking 
+# to Grandma until you shout BYE.
+# Hint 1: Don’t forget about chomp! 'BYE' with an Enter at the end is not 
+# the same as 'BYE' without one!
+# Hint 2: Try to think about what parts of your program should happen over 
+# and over again. All of those should be in your while loop.
+# Hint 3: People often ask me, “How can I make rand give me a number in a 
+# range not starting at zero?” Well, you can’t; rand just doesn’t work that 
+# way. So, I guess you’ll have to do something to the number rand returns to you.
+
+puts "WHAT DO YOU SAY, SONNY"
+bye_count = 0
+
+while true
+	reply = gets.chomp
+	if reply == 'BYE'
+		bye_count = bye_count + 1
+	else
+		bye_count = 0
+	end
+
+	if bye_count == 3
+		puts "BYE BYE SWEETIE"
+		break
+	end
+
+  if reply != reply.upcase
+	  puts "SPEAK UP SONNY, I CAN'T HEAR YOU"
+  else
+	  puts "NO, NOT SINCE 1#{rand(111..999)}"
+  end
+end
+
+
+
+# • Deaf grandma extended. What if Grandma doesn’t want you to leave? 
+# When you shout BYE, she could pretend not to hear you. Change your previous 
+# program so that you have to shout BYE three times in a row. Make sure to test 
+# your program: if you shout BYE three times but not in a row, you should 
+# still be talking to Grandma.
+# ￼
 
 
 
