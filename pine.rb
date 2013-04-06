@@ -373,8 +373,97 @@
 # puts "Chapter 2: Numbers".ljust(0) + "page 9".rjust(line_width)
 # puts "Chapter 1: Letters".ljust(0) + "page 13".rjust(line_width)
 
+# 6.4 More Arithmetic
 
+# The other two arithmetic methods are ** (exponentiation) and % (modulus)
+# So if you want to say 'five square', you'd put 5**2. If you wanted to 
+# find a square root, you could use 5**0.5. % gives you the remainder
+# after a division of a number. Example 7 % 3 gives you a modulo of 1.
 
+# puts 
+# puts 5 ** 2
+# puts 5 ** 0.5
+# puts 7 / 3
+# puts 7 % 3
+# puts 365 % 7
+
+# % works with floats too: 
+
+# puts 54 % 0.6
+# puts 5.4 % 2.5
+
+# One last method for arithmetic .abs. This method simply returns the absolute
+# value of the number.
+
+# puts (5 - 2).abs
+# puts (2 - 5).abs
+# puts (10 - 20).abs
+
+# 6.5 Random Numbers
+
+# Ruby comes with a pretty nice random number generator. The method to get a 
+# randomly chosen number is rand. If you call rand just like that, you'll get 
+# a float greater than or equal to 0.0 and less than 1.0. If you give it an
+# integer parameter (rand(7).example) it will give you an integer greater than
+# or equal to zero and less than 5. In action: 
+
+# puts 
+# puts rand
+# puts rand
+# puts rand
+# puts rand(100)
+# puts rand(100)
+# puts rand(100)
+# puts rand(100)
+# puts rand(100)
+# puts rand(1)
+# puts rand(1)
+# puts rand(1)
+# puts rand(1)
+# puts rand(9999999999999999999)
+# puts 'The weatherman said there is a'
+# puts rand(101).to_s + '% chance of rain'
+# puts 'but you can never trust a weatherman'
+
+# Sometimes you might want rand to return the same random numbers in the same
+# sequence on two different runs of your program (testing for example). In order
+# to do this you need to set the seed, which you do with srand:
+
+# puts
+# srand 1976
+# puts rand(100)
+# puts rand(100)
+# puts rand(100)
+# puts rand(100)
+# puts ''
+# srand 1976
+# puts rand(100)
+# puts rand(100)
+# puts rand(100)
+# puts rand(100)
+
+# It will do the same thing every time you see it with the same number. 
+
+# 6.6 The Math object
+
+# Finally, let's look at the Math object. First some code examples:
+
+puts Math::PI
+puts Math::E 
+puts Math.cos(Math::PI/3)
+puts Math.tan(Math::PI/4)
+puts Math.log(Math::E**2)
+puts ((1 + Math.sqrt(5))/2)
+
+# The first thing we notice is the :: notation. Explaining the scope 
+# operator is beyond the scope of this book. 
+
+# As you can see, Math has all the features you would expect a decent
+# scientific calculator to have. And, as always, the floats are really 
+# close to being the right answers but not exact; don't trust them 
+# further than you can calculate them. 
+
+# Chapter 7 - Flow Control
 
 
 
