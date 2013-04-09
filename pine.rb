@@ -1,721 +1,381 @@
-# Learn to Program - Chris Pine - BitmakerLabs Prep
+# Chapter 8 - Arrays and Iterators
 
-# Chapter 1 - Install - Complete
+# Let's say we want to write a program that asks us to type in as many 
+# words as we want(one word per line), continuing until we just press
+# enter on an empty line and then repeats the words back to us in 
+# alphabetical order? 
+# It appears that at this point, we don't have a way to do it. 
+# To accomplish this, we need an Array. An Array is really just a list
+# Every item in that list acts like a variable. Let's take a look at 
+# a couple of examples:
 
-# Chapter 2 - Numbers
+# []
+# [5]
+# ['hello', 'goodbye']
 
-# puts 1 + 2
+# flavor = 'vanilla'
+# [89.9, flavor, [true, false]]
 
-# In most programming languages, numbers without decimal points
-# are called integers, and numbers with decimal points are usually
-# called floating-point numbers, or more simply, floats.
 
-# In practice, most programs don't use floats; they use only integers.
-# (After all, no one wants to look at 7.4 emails, browse 1.8 web pages). 
-# Floats are used more for academic purposes (physics experiments and such)
-# and for audio and video. Even most money programs use integers; they just
-# keep track of the number of pennies.
+# First we have an empty array, then an array holding a single number,
+# and then an array holding two strings. Next we have a simple assignment;
+# then we have an array holding three objects, the last of which is another
+# array (arrays can be contained inside arrays). Remember, variables aren't
+# really objects, so our last array is really pointing to a float, a string 
+# and an array. 
 
-# For addition and subtraction, we use + and -. For multiplication, we use *
-# and for division we use /. 
+# To help us find a particular object in an array, each slot is given an 
+# index number. Programmers like to start at zero, so the first slot is 
+# always zero. Here's how we would reference the objects in an array:
 
+# names = ['ada', 'jared', 'rachel', 'louis', 'chris', 'belle', 'marie', 'ashley']
+
+# puts names
 # puts
-# puts 1.0 + 2.0
-# puts 2.0 * 3.0
-# puts 5.0 - 8.0
-# puts 9.0 / 2.0
-# puts
-# puts 1+2
-# puts 2*3
-# puts 5-8
-# puts 9/2
-
-# When you do arithmetic with integers, you'll get integer answers. When
-# your computer can't get the "right" answer, it always rounds down.
-
+# puts names[0]
+# puts names[4]
+# puts names[3]
+# names << "Phillips"
+# puts names
 # puts 
-# puts 5 * (12-8) + -15
-# puts 98 + (59872 / (13*8)) * -51
+# puts names[2]
+# puts names[100]
 
-# 2.5 A Few Things to Try
+# So, we see that "puts names" prints each name in the array 'names'. Then
+# we use puts names[0] to print out the first name in the array and puts 
+# names[1] to print the second. Finally, we tried to puts names[100], just 
+# to see what would happen. Were you expecting an error? Sometimes, instead
+# of an error you get an answer of nothing (or nil). Since the computer
+# knows the rules and parameters of arrays, this doesn't raise an error.
 
-# Write a program that tells you the following:
- # Hours in a year. 
- # Minutes in a decade.
- # Your age in seconds.
- # Our dear author's age 
+# Getting back to slots in arrays act like variables. This means you can 
+# assign to them as well. If you just had to guess what that code looked like,
+# you'd probably guess like this:
 
-# puts 
-# puts "Hours in Year"
-# puts 24 * 365
-# puts "Minutes in a Decade"
-# puts (60 * 24) * (365 * 10 + 2)
-# puts "My age in seconds"
-# puts (60 * 24) * 365 * 34
-# puts "Our dear author's age"
-# puts 1025000000 / 60 / 60 / 24 / 365
-# puts 800000000 / 60 / 60 / 24 / 365
+# names = []
 
-# Chapter 3 - Letters
+# names[3] = 'Jared'
+# names[2] = 'Bill'
+# names[9] = 'Dave'
+# names[0] = 'Rachel'
 
-# We refer to groups of letters in a program as strings. 
-# Strings can have punctuation, digits, symbols and even spaces
-# in them...more than just letters. 
+# puts names
 
-# puts 
-# puts 'Hello, world!'
-# puts ''
-# puts 'Good-bye'
+# As you can see, you don't have to assign to the slots in any order and any
+# that you leave open are filled with nil by default. 
 
-# You can add strings...
+# 8.1 The Method .each
 
-# puts 'I like' + 'apple pie'
-# puts 'I like ' + 'apple pie'
+# The method .each allows us to do something (whatever it is we want) to
+# each object in an array. (It looks weird, through and this can throw 
+# some people off)
 
-# You can also multiply strings
+# languages = %w[english norwegian ruby perl lisp]
 
-# puts
-# puts "blink " * 4
-
-# Before we get any further, we should make sure that we understand the
-# difference between numbers and digits. 12 is a number, but '12' is a
-# string of two digits.
-
-# Let's play around with this for a while:
-
-# puts 
-# puts 12 + 12
-# puts '12' + '12'
-# puts '12 + 12'
-
-# puts 
-# puts 2 * 5
-# puts '2' * 5
-# puts '2 * 5'
-
-# puts '12' + 12
-# <TypeError: can't convert Fixnumb into String>
-# An error message. The problem is that you can't really add
-# a number to a string or multiply a string by another string. 
-
-# Another problem:
-# puts 'You're swell!'
-
-# Well, that won't work. We have to 'escape' the apostrophe, like this:
-
-# puts
-# puts 'You\'re swell!'
-
-# The backslash is the escape character. Let's see a few examples of 
-# escaping in strings:
-
-# puts 
-# puts "Escaping Examples"
-# puts 'You\'re swell!'
-# puts 'backslash at the end of a string: \\'
-# puts 'up\\down'
-# puts 'up\down'
-
-# Chapter 4 - Variables and Assignment
-
-# So far we've only put's a string or a number and once we've puts it, its 
-# gone. What if we wanted to print something twice, we'd have to puts it 
-# twice. It would be nice if we could hold on to that thing and store somewhere.
-# That's where variables are for. Programmers call this type of thing, assignment. 
-# A variable name can usually be just about any sequence of letters and numbers, 
-# but in Ruby the first character of this name needs to be lowercased. 
-
-# puts
-# my_string = '...you can say that again...'
-# puts my_string
-# puts my_string
-
-# You can think of the variable my_string as 'pointing to' the string. 
-# Slightly more motivated example:
-
-# puts
-# name = 'Anya Christina Emmauneulla Jenkins Harris'
-# puts 'My name is ' + name + '.'
-# puts 'Wow! ' + name
-# puts 'is a really long name!'
-
-# Also, just as we can assign an object to a variable, we can reassign a different
-# object to that variable. (This is why we call them variables, what they point to 
-# can vary!). Notice how Chris refers to the string as an object. 
-
-# puts 
-# composer = 'Mozart'
-# puts composer + ' was "da bomb" in his day.'
-
-# composer = 'Beethoven'
-# puts 'But I prefer ' + composer + ', personally.'
-
-# Of course, variables can point to any kind of object, not just strings. 
-
-# puts 
-# my_own_var = 'just another ' + 'string'
-# puts my_own_var
-
-# my_own_var = 5 * (1+2)
-# puts my_own_var
-
-# Variables can point to just about anything, except other variables. But what
-# happens if we try?
-
-# var1 = 8
-# var2 = var1
-# puts var1 
-# puts var2
-# puts ''
-# var1 = 'eight'
-# puts var1
-# puts var2
-
-# Chapter 5 - Mixing it up
-
-# We've looked at a few kinds of objects (integers, floats, strings). Now it's
-# time to put them all together.  
-# Adding integers and strings doesn't work because you can't add them 
-# together. 
-
- # variable1 = 2
- # variable2 = '5'
- # puts variable1 + variable2
- # Sting can't be coerced into Fixnumb(TypeError)
-
-# To get the string version of an object, we simply write .to_s after it:
-
-# variable1 = 2
-# variable2 = '5'
-# puts variable1.to_s + variable2
-# 25
-
-# Similarly, .to_i gives the integer version of an object and .to_f gives 
-# float version. 
-
-# var1 = 2
-# var2 = '5'
-# puts
-# puts var1.to_s + var2
-# puts var1 + var2.to_i
-
-# Lets try some more interesting examples (and a few weird ones)
-
-# puts 
-# puts '15'.to_f
-# puts '99.999'.to_f
-# puts '99.999'.to_i
-# puts ''
-# puts '5 is my favourite number!'.to_i
-# puts 'Who asked you about 5 or whatever?'.to_i # This one surprised me. 
-# puts 'Your momma did'.to_f # Ruby returns 0 if it doesn't understand. 
-# puts ''
-# puts 'stringy'.to_s
-# puts 3.to_i
-
-# 5.2 Another Look at Puts
-
-# puts 20
-# puts 20.to_s
-# puts 20
-
-# All return the same thing, 20. The reason being is that puts is literally 
-# "put string". It uses .to_s to retrieve the string version of that object
-# Using puts will always return the string version of that object. 
-
-# 5.3 The gets Method
-
-# Similar to the puts method, it puts strings. The gets method, retrieves strings.
-# Lets try them together. 
-
-# puts gets - repeats the string you just typed in. 
-
-# 5.5 The chomp Method
-
-# puts 
-# puts 'Hello there, and what\'s your name?'
-# name = gets.chomp
-# puts 'Your name is ' + name + '? What a lovely name!'
-# puts 'Pleased to meet you, ' + name + '. :)'
-
-# 5.6 A Few Things to Try
-
-# Full name greeting. Write a program that asks for a person’s first name, 
-# then middle, and then last. Finally, it should greet the person using 
-# their full name. 
-
-# puts 
-# puts "Hey, what's your first name?"
-# first = gets.chomp
-# puts "What's your middle name?"
-# middle = gets.chomp
-# puts "And finally, what's your last name?"
-# last = gets.chomp
-# puts "Well then, #{first} #{middle} #{last}, very nice to meet you" 
-
-# Bigger, better favorite number. Write a program that asks for a person’s 
-# favorite number. Have your program add 1 to the number, and then suggest
-# the result as a bigger and better favorite number. (Do be tactful about 
-# it, though.)
-
-# puts 
-# puts "What's your favourite number?"
-# number = gets.chomp.to_i
-# puts "I have a suggestion for a better favourite number"
-# puts "Do you want to hear it?"
-# answer = gets.chomp.downcase
-# unless answer == 'yes' 
-# 	puts "Please, can I tell you the number?"
-# else answer == 'yes'
-# 	puts "Cool, let me think...#{number} is a pretty good number"
-# 	puts
-# 	puts "How bout #{number + 1}. That's a pretty good number, uh?"
+# languages.each do |a|
+# 	a.capitalize!
+# 	puts "I Love #{a}"
+# 	puts 'Don\'t you?'
 # end
 
-# 5.7 Mind Your Variables
+# puts 'And let\'s hear it for Java!'
+# puts '<crickets chirp in the distance>'
 
-# When writing a program, try and have a good feel for what object each 
-# variable is pointing to. It's important to keep track of what is an
-# integer or string or whatever. 
-# Its also important to name your variables with names that makes it easy
-# to know what they are at a glance. I already try to do this, but it's 
-# good to remember. 
-# Its easy to get frustrated when your programs have errors, but try not
-# to think of them as errors. Think of them instead as the pathetic attempts
-# of a socially inept non-native English speaker (your computer) asking for 
-# help. 
+# What just happened? Well, we were able to go through every object in the array
+# without using any numbers, that was nice. We won't talk about blocks just now
+# except for the bars on either side of 'a'. The veritcal bars don't 'do' anything
+# to 'a', they just let each know which variable to use to feed in the objects in 
+# in the array. 
+# You might be thinking to yourself, "This is a lot like the loops we learned
+# about earlier". Yep, very similar. One important difference is that the
+# method each is just that, a method. while and end (much like do, if, else
+# and all the other keywords) are not methods. They are a fundamental part of 
+# the Ruby language, just like = and {}; they are kind of like punctuation 
+# marks in English.
 
-# Chapter 6 - More About Methods
+# But this is true with each; each is just another array method. Methods like each
+# that 'act like' loops are often called iterators. 
 
-# Technical terms, methods are the things that do stuff. Its the action performed 
-# on the object 
+# One thing to notice about iterators is that they are always followed by a block
+# |iterator|, that is, by some code wrapped inside do...end. On the other hand, 
+# while and if never had a do near them. 
 
+# Here's another cute iterator, but this one is not an array method:
+
+# 3.times do
+# 	puts "Hip-Hip Hooray"
+# end
+
+# 8.2 More Array Methods
+
+# We've learned .each, but there are many other array methods, almost as many
+# as there are string methods. In fact, some of them (such as length, reverse,
+# + and *) work just like they do for stringsm except they operate on the slots
+# of the array rather than on the letters of the string. Others, such as .last
+# or .join are specific to arrays. Still others, such push and pop change the 
+# array. 
+
+# foods = %w[articoke brioche caramel]
+
+# puts foods
 # puts
-# puts self
-
-# 6.1 Fancy String Methods
-
-# Let's learn a few fun string methods. The first one is reverse.
-
-# variable1 = 'stop'
-# variable2 = 'deliver repaid desserts'
-# variable3 = '......TCELES B HSUP A magic spell'
-
-# puts variable1.reverse
-# puts variable2.reverse
-# puts variable3.reverse
-# puts variable1
-# puts variable2
-# puts variable3
-
-# As you can see, .reverse doesn't change the original string. It makes a 
-# new backward version of the string. 
-# Another string method is .length, which tells us the number of chararacters
-# (including spaces) in the string:
-
+# puts foods.to_s
 # puts 
-# puts 'What is your full name?'
-# name = gets.chomp
-# puts "Did you know that there are #{name.length} characters in your name?"
-
-# A number of string methods can also change the case (upper and lowercase)
-# of your string. .upcase changes every letter to uppercase and downcase changes
-# every letter to lowercase. And finally, capitalize is just like downcase
-# expect it switches the first character to uppercase (if its a letter)
-
-# letters = 'aAbBcCdDeE'
-# puts letters.upcase
-# puts letters.downcase
-# puts letters.swapcase
-# puts letters.capitalize
-# puts ' a'.capitalize
-# puts letters
-
-# As you can see from the puts ' a'.capitalize, it only capitalizes the 
-# first character, not the first letter. Also, we can see that the 
-# original letters string remains the same/untouched.
-# Our last of the fancy string methods deal with fancy visual formatting. 
-# The .center method adds spaces to the beginning and end of your string but 
-# you have to tell it how many you want .center(130). This will give you 130 
-# spaces on each side of the string. 
-
-# line_width = 60
-# puts('Old Mother Hubbard'.center(line_width)) 
-# puts('Sat in her cupboard'.center(line_width)) 
-# puts('Eating her curds and whey'.center(line_width)) 
-# puts('When along came a spider'.center(line_width)) 
-# puts('Who sat down beside her'.center(line_width)) 
-# puts('And scared her poor shoe dog away'.center(line_width)) 
-
-# A Few Things to Try
-
-# • Angry boss. Write an angry boss program that rudely asks what you want. 
-# Whatever you answer, the angry boss should yell it back to you and then fire you. 
-# For example, if you type in I want a raise, it should yell back like this:
-# WHADDAYA MEAN "I WANT A RAISE"?!? YOU'RE FIRED!!
-
-# • Table of contents. Here’s something for you to do in order to play around 
-# 	more with center, ljust, and rjust: write a program that will display a 
-# 	table of contents so that it looks like this:
-
-# Table of Contents
-# Chapter 1:  Getting Started						page  1
-# Chapter 2:  Numbers                   page  9
-# Chapter 3:  Letters  									page 13
-
-# puts "What the hell do you want?"
-# answer = gets.chomp.upcase
-# puts 'WHADDAYA MEAN "' + answer + '" YOU\'RE FIRED!!'
-
-# line_width = 50
-# puts "Table of Contents".center(40)
-# puts "Chapter 1: Getting Started".ljust(0) + "page 1".rjust(line_width - 8)
-# puts "Chapter 2: Numbers".ljust(0) + "page 9".rjust(line_width)
-# puts "Chapter 1: Letters".ljust(0) + "page 13".rjust(line_width)
-
-# 6.4 More Arithmetic
-
-# The other two arithmetic methods are ** (exponentiation) and % (modulus)
-# So if you want to say 'five square', you'd put 5**2. If you wanted to 
-# find a square root, you could use 5**0.5. % gives you the remainder
-# after a division of a number. Example 7 % 3 gives you a modulo of 1.
-
+# puts foods.join(', ')
 # puts 
-# puts 5 ** 2
-# puts 5 ** 0.5
-# puts 7 / 3
-# puts 7 % 3
-# puts 365 % 7
+# puts foods.join(' :) ') +' 8)'
 
-# % works with floats too: 
+# 200.times do
+# 	puts foods
+# end
 
-# puts 54 % 0.6
-# puts 5.4 % 2.5
+# Whew! Its good that puts treats arrays differently from other objects, that 
+# would have been a boring couple of pages if puts had written something 200
+# times. With arrays, puts calls puts on each of the objects inside the array.
+# That's why when we just called puts on the empty array in the example, it did 
+# nothing. There was nothing in the array to puts. Try puts-ing an array containing
+# other arrays. 
 
-# One last method for arithmetic .abs. This method simply returns the absolute
-# value of the number.
+# things = ['a', 3, [3, 6], "object", :symbol]
 
-# puts (5 - 2).abs
-# puts (2 - 5).abs
-# puts (10 - 20).abs
-
-# 6.5 Random Numbers
-
-# Ruby comes with a pretty nice random number generator. The method to get a 
-# randomly chosen number is rand. If you call rand just like that, you'll get 
-# a float greater than or equal to 0.0 and less than 1.0. If you give it an
-# integer parameter (rand(7).example) it will give you an integer greater than
-# or equal to zero and less than 5. In action: 
-
-# puts 
-# puts rand
-# puts rand
-# puts rand
-# puts rand(100)
-# puts rand(100)
-# puts rand(100)
-# puts rand(100)
-# puts rand(100)
-# puts rand(1)
-# puts rand(1)
-# puts rand(1)
-# puts rand(1)
-# puts rand(9999999999999999999)
-# puts 'The weatherman said there is a'
-# puts rand(101).to_s + '% chance of rain'
-# puts 'but you can never trust a weatherman'
-
-# Sometimes you might want rand to return the same random numbers in the same
-# sequence on two different runs of your program (testing for example). In order
-# to do this you need to set the seed, which you do with srand:
-
+# puts things.join(', ')
 # puts
-# srand 1976
-# puts rand(100)
-# puts rand(100)
-# puts rand(100)
-# puts rand(100)
-# puts ''
-# srand 1976
-# puts rand(100)
-# puts rand(100)
-# puts rand(100)
-# puts rand(100)
+# puts things[2]
 
-# It will do the same thing every time you see it with the same number. 
+# No, it didn't do as I was expecting. I was expecting the 3, 6 to be puts 
+# together. It appears (not certain) that it treats it like just two links in the
+# chain instead of one. 
 
-# 6.6 The Math object
+# More nested array practice
 
-# Finally, let's look at the Math object. First some code examples:
+# family = ['Mom', 'Dad', 'Kids']
 
-# puts Math::PI
-# puts Math::E 
-# puts Math.cos(Math::PI/3)
-# puts Math.tan(Math::PI/4)
-# puts Math.log(Math::E**2)
-# puts ((1 + Math.sqrt(5))/2)
+# puts family
+# family << relatives = [['Uncles', 'Aunts']]
+# puts
+# puts family
+# puts
+# puts relatives
 
-# The first thing we notice is the :: notation. Explaining the scope 
-# operator is beyond the scope of this book. 
+# family.pop 'Aunts'
+# puts 
+# puts family
 
-# As you can see, Math has all the features you would expect a decent
-# scientific calculator to have. And, as always, the floats are really 
-# close to being the right answers but not exact; don't trust them 
-# further than you can calculate them. 
+# We should now take a look at push, pop and last. The methods push and pop are 
+# sort of like + and - for arrays. push adds something to the end of your array 
+# and pop subtracts from the end of the array (and tells you what it was). last 
+# is similar to pop except that it leaves it be. push and pop will actually 
+# change the array. 
 
-# Chapter 7 - Flow Control
+# fav = []
+# fav.push 'raindrops on roses'
+# fav.push 'whiskey on kittens' 
 
-# We've covered a lot of the basics, but this where we breathe life into our
-# programs. After this chapter we will be able to do different things within
-# our programs and have different outcomes.
+# puts fav[0]
+# puts fav.last
+# puts fav.length
 
-# 7.1 Comparison Methods
+# puts fav.pop
+# puts fav
+# puts fav.length
 
-# First, lets try to see whether one object is greater than or less than
-# another. For that we use < or >
- 
-# puts 1 > 2
-# puts 1 < 2
 
-# Likewise we can also find out whether an object is greater than or equal
-# to another with the methods >= and <=:
+# 8.3 A Few Things to Try
+# • Building and sorting an array. Write the program we talked about
+# at the beginning of this chapter, one that asks us to type as many
+# words as we want (one word per line, continuing until we just
+# press Enter on an empty line) and then repeats the words back
+# to us in alphabetical order. Make sure to test your program thoroughly;
+# for example, does hitting Enter on an empty line always
+# exit your program? Even on the first line? And the second? Hint:
+# There’s a lovely array method that will give you a sorted version of
+# an array: sort. Use it!
 
-# puts 5 >= 5
-# puts 5 <= 4
-
-# And finally we can whether two objects are equal by using == (which
-# means 'Are these equal?') and != (which means 'Not Equal'). Its important
-# not to confuse = with ==. = is for asssigning a variable, and == is for 
-# asking the question are these equal.
-
-# puts 1 == 1
-# puts 2 != 1
-
-# Of course, we can compare strings, too. When comparing strings, Ruby compares
-# lexicographical ordering, which basically means the order they appear in a
-# dictionary. For example, cat comes before dog in the dictionary, so we
-# have this:
-
-# puts 'cat' < 'dog'
-
-# There is a catch though, capital letters. Letters get stored all capital 
-# capital letters first, then small letters. This means that something
-# like 'Xander' comes before 'bug lady'. So make sure you use downcase or
-# upcase before comparing two strings.
-
-# puts 'Xcat'.downcase < 'dog'
-
-# Similarly surprising is this:
-
-# puts 2 < 10
-# puts '2' < '10'
-
-# That last one is confusing. Remember that Ruby is comparing characters and
-# '2' comes after '1'. One last note before we move on: the comparison methods
-# aren't giving us the strings 'true' of 'false', they are giving us the 
-# special objects true and false that represent...well, truth or falsity. True
-# and false are used all the time in a language construct called branching.
-
-# 7.2 Branching
-
-# Branching is a simple concept, but it's extremely powerful. 
-
-# puts "Hello, what's your name?"
-# name = gets.chomp.capitalize
-# puts "Hello #{name}"
-
-# if name == 'Jared'
-# 	puts 'What a lovely name!'
-# end
-
-# And that is branching. If what comes after the if is true, we run the code
-# between the if and the end. If what comes after the if is false, we don't.
-
-# Branching is kind of like coming to a fork in the code: do we take the path
-# for people whose name == 'Jared' or else do we take the other, less cool path.
-# Just like the branches of a tree, you can have branches that themselves 
-# have branches. Here's an example:
-
-# puts 'Hello, and welcome to seventh grade English'
-# puts 'My name is Mrs. Gabbard. And your name is...?'
-# name = gets.chomp
-
-# if name == name.capitalize
-# 	puts "Please take a seat, #{name}"
-# else
-# 	puts "#{name}?, You mean #{name.capitalize}, right?"
-# 	puts "Don't you know how to spell your own name?"
-# 	reply = gets.chomp
-
-# 	if reply.downcase == 'yes'
-# 		puts 'Hmmph! Well, sit down!'
-# 	else
-# 		puts 'GET OUT'
-# 	end
-# end
-
-# 7.3 Looping
-
-# Often, you'll want the computer to do the same thing over and over again. 
-# After all, that's what they're supposed to be good at doing. When you tell
-# a computer to loop something, you also need to tell it to stop (or it won't)
-# One way to do this is by using a 'while' condition. The computer will run
-# this while loop while the condition is true. 
-
-# input = ''
-
-# while input != 'bye'
-# 	puts 'Hi'
-# 	puts input
-# 	input = gets.chomp
-# end
-
-# puts 'Come again soon!'
-
-# Its not a fabulous program, though. For one thing, while tests your condition
-# at the top of the loop. In this case we had to tweak our loop so it could 
-# test there. This made us puts a blank line before we did our first gets.
-# In my mind, it just feels like the gets comes first and the echoing 
-# puts comes later.
-
-# while true 
-# 	input = gets.chomp
-# 	puts input
-# 	if input == 'bye'
-# 		break
-# 	end
-# end
-
-# puts 'Come again soon'
-
-# My refactor
-
-# while true 
-# 	input = gets.chomp
-# 	puts input
-# 	break if input == 'bye'
-# end
-
-# puts 'Come again soon'
-
-# Loops are lovely things, but they are like high-maintenance girlfriends or
-# bubble gum, they cause big problems if handled improperly. 
-# Before we start playing around with loops, let's learn a few things to make
-# our job easier. 
-
-# 7.4 A Little Bit of Logic
-
-# Chris' wife didn't like this program so we are going to rewrite it. 
-
-# puts "Hello, what's your name?"
-# name = gets.chomp
-
-# if (name == 'Chris') || (name == 'Katy')
-# 	puts "What a lovely name"
-# else
-#   puts "Hello #{name}"
-# end
-
-# To make this work, we used ||, which is how we say 'or' in most programming
-# languages. The english word "or" does work but shouldn't be used in 
-# a boolean context.
-
-# Just to make sure everything is well cemented for you, let's look at one
-# more example before you go it alone. 
+# words = []
+# puts "I'll sort some words for you"
+# puts "Just type one word per line"
+# puts "Press enter on an empty line when your done"
+# puts "Ready..."
+# puts "Go"
 
 # while true
-# 	puts "What would like to do ask C to do?"
-# 	request = gets.chomp
-
-# 	puts 'You say, "C, please' + request + '"'
-
-# 	puts 'C\'s response:'
-# 	puts '"Papa, ' + request + ', too."'
-# 	puts '"Mama, ' + request + ', too."'
-# 	puts '"Ruby, ' + request + ', too."'
-# 	puts '"Nono, ' + request + ', too."'
-# 	puts '"Emma, ' + request + ', too."'
-# 	puts '"Jared, ' + request + ', too."'
-# 	puts '"Rachel, ' + request + ', too."'
-
-#   if request == 'stop'
-# 	  break 
-#   end
+# 	reply = gets.chomp.downcase
+# 	break if reply == ''
+# 	words << reply
+#   words.sort!
 # end
 
-# 7.5 A Few Things to Try
+# puts words.join(', ')
 
-# • “99 Bottles of Beer on the Wall.” Write a program that prints out the 
-# lyrics to that beloved classic, “99 Bottles of Beer on the Wall.”
+# • Table of contents, revisited. Rewrite your table of contents program
+# on page 36. Start the program with an array holding all of
+# the information for your table of contents (chapter names, page
+# numbers, and so on). Then print out the information from the
+# array in a beautifully formatted table of contents.
 
-# number = 100
+# table = ['Table of Contents', 'Chapter 1: Getting Started', 'page 1',
+# 															'Chapter 2: Numbers', 'page 9',
+# 															'Chapter 3: Letters', 'page 13',
+# 														  'Chapter 4: I\'m Killing This', 'page 15-end']
 
-# while number >= 1
-# 	puts "#{number} bottles of beer on the wall, #{number} bottles of beer"
-# 	puts "Take one down and pass it around"
-# 	number = number - 1
-# 	puts "...(sound of drinking)..."
-# 	puts "#{number} bottles of beer on the wall"
-# 	break if number == 2 
-# end
 
-# puts "One bottle of beer of the wall, one bottle of beer"
-# puts "Take it down, pass it around."
-# puts "And now its time for bed!"
+# column_width = 30
+# puts table[0].center(column_width+ 10)
+# puts 
+# puts (table[1].ljust(column_width)) + table[2].rjust(column_width)
+# puts (table[3].ljust(column_width)) + table[4].rjust(column_width)
+# puts (table[5].ljust(column_width)) + table[6].rjust(column_width)
+# puts (table[7].ljust(column_width)) + table[8].rjust(column_width)
 
-# • Deaf grandma. Whatever you say to Grandma (whatever you type in), she 
-# should respond with this:
-#      HUH?!  SPEAK UP, SONNY! unless you shout it (type in all capitals). 
-#      If you shout, she can hear you (or at least she thinks so) and 
-#      yells back: NO, NOT SINCE 1938!
+# Chapter 9 - Writing Your Own Methods
 
-# To make your program really believable, have Grandma shout a different 
-# year each time, maybe any year at random between 1930 and 1950. 
+# As in our previous chapter, we've seen that loops and iterators allow
+# us to run the same code over and over again. However, sometimes we want 
+# to do the same thing a number of times but from a different place in the 
+# program. 
 
-# (This part is optional and would be much easier if you read the section 
-# 	on Ruby’s random number generator on page 38.) You can’t stop talking 
-# to Grandma until you shout BYE.
-# Hint 1: Don’t forget about chomp! 'BYE' with an Enter at the end is not 
-# the same as 'BYE' without one!
-# Hint 2: Try to think about what parts of your program should happen over 
-# and over again. All of those should be in your while loop.
-# Hint 3: People often ask me, “How can I make rand give me a number in a 
-# range not starting at zero?” Well, you can’t; rand just doesn’t work that 
-# way. So, I guess you’ll have to do something to the number rand returns to you.
+# Long example from book - not exactly as shown, I made some tweaks to 
+# actually add up those results and see if someone enjoys Mexican food. 
+puts
+puts
+puts "Hello, and thank you for taking the time to"
+puts "help me with this experiment. My experiment"
+puts "has to do with the way people feel about Mexican"
+puts "food. Just think about Mexican food and try to answer"
+puts "every question honestly with either a 'yes' or 'no'"
+puts "My experiment has nothing to do with bed wetting."
+puts 
+puts "Are you ready?"
+puts
 
-puts "WHAT DO YOU SAY, SONNY"
-bye_count = 0
+yes = 0
+no = 0
 
 while true
-	reply = gets.chomp
-	if reply == 'BYE'
-		bye_count = bye_count + 1
+	puts 'Do you like eating tacos?'
+	answer = gets.chomp.downcase
+	if answer == 'yes'
+	  yes = yes + 1
+	  break
+	elsif
+	  answer == 'no'
+	  no = no + 1
+	  break
 	else
-		bye_count = 0
-	end
+		puts "Please answer yes or no"
+  end
+end 
 
-	if bye_count == 3
-		puts "BYE BYE SWEETIE"
-		break
-	end
+puts
 
-  if reply != reply.upcase
-	  puts "SPEAK UP SONNY, I CAN'T HEAR YOU"
-  else
-	  puts "NO, NOT SINCE 1#{rand(111..999)}"
+while true
+	puts 'Do you like eating burritos?'
+	answer = gets.chomp.downcase
+	if answer == 'yes'
+	  yes = yes + 1
+	  break
+	elsif
+	  answer == 'no'
+	  no = no + 1
+	  break
+	else
+		puts "Please answer yes or no" 
   end
 end
 
+puts 
+
+while true
+	puts 'Do you wet the bed?'
+	answer = gets.chomp.downcase
+	if answer == 'yes'
+	  wets_bed = true
+	  break
+	elsif 
+		answer == 'no'
+	  wets_bed = false
+	  break
+	else
+		puts "Please answer yes or no"
+  end
+end
+
+puts
+
+while true
+	puts 'Do you like eating nachos?'
+	answer = gets.chomp.downcase
+	if answer == 'yes'
+	  yes = yes + 1
+	  break
+	elsif
+	  answer == 'no'
+	  no = no + 1
+	  break
+	else
+		puts "Please answer yes or no"
+  end
+end
+
+result = yes <=> no
 
 
-# • Deaf grandma extended. What if Grandma doesn’t want you to leave? 
-# When you shout BYE, she could pretend not to hear you. Change your previous 
-# program so that you have to shout BYE three times in a row. Make sure to test 
-# your program: if you shout BYE three times but not in a row, you should 
-# still be talking to Grandma.
-# ￼
+puts
+puts "Debriefing...."
+puts "Thank you for taking the time to help with this experiment"
+puts "Here are the results"
+puts
 
+if result == 1
+	puts "You like Mexican Food"
+else
+	puts "You don't really like Mexican Food"
+end
 
+if wets_bed == true
+	puts "And you also wet the bed? Gross"
+else
+	puts "And good for you, you don't wet the bed."
+end
 
+# That was a really long and ugly program with lots of repetition. 
+# All the sections of code around the questions about Mexican food 
+# were identical except for the food name and even the bed
+# wetting question was only slightly different. 
 
+# Repetition in code is a bad thing. Still, we can't change the repeated
+# code to a big loop or iterator cause sometimes we have things we want
+# to do inbetween questions. In these cases it's better to write a method. 
 
+# Starting small
+
+# def say_moo
+#   puts "Moo...."
+# end
+
+# puts say_moo
+
+# So, we defined a method say_moo. (Method names, like variables almost
+# always start with a lowercase letter.) But don't methods always have to 
+# be associated with objects? Well, yes they do, but in the case of gets
+# or puts, the method is associated with the object that represents the
+# whole program. 
+
+# 9.1 Method Parameters
+
+# You may have noticed that some methods (such as gets, reverse and so on)
+# can just be called on an object. However, other methods (such as +, - 
+# and puts...) take parameters to tell the object how to do the method. 
+
+# Parameter examples for my clarity
+
+# puts('Jared')
+# gets()
+# puts(5+(5))
+
+# def say_moo(number_of_moos)
+# 	puts "Moo..." * number_of_moos
+# end
+
+# puts say_moo(1000)
+# puts say_moo
