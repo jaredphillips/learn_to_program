@@ -236,107 +236,106 @@
 
 # Long example from book - not exactly as shown, I made some tweaks to 
 # actually add up those results and see if someone enjoys Mexican food. 
-puts
-puts
-puts "Hello, and thank you for taking the time to"
-puts "help me with this experiment. My experiment"
-puts "has to do with the way people feel about Mexican"
-puts "food. Just think about Mexican food and try to answer"
-puts "every question honestly with either a 'yes' or 'no'"
-puts "My experiment has nothing to do with bed wetting."
-puts 
-puts "Are you ready?"
-puts
 
-yes = 0
-no = 0
+# puts "Hello, and thank you for taking the time to"
+# puts "help me with this experiment. My experiment"
+# puts "has to do with the way people feel about Mexican"
+# puts "food. Just think about Mexican food and try to answer"
+# puts "every question honestly with either a 'yes' or 'no'"
+# puts "My experiment has nothing to do with bed wetting."
+# puts 
+# puts "Are you ready?"
+# puts
 
-while true
-	puts 'Do you like eating tacos?'
-	answer = gets.chomp.downcase
-	if answer == 'yes'
-	  yes = yes + 1
-	  break
-	elsif
-	  answer == 'no'
-	  no = no + 1
-	  break
-	else
-		puts "Please answer yes or no"
-  end
-end 
+# yes = 0
+# no = 0
 
-puts
+# while true
+# 	puts 'Do you like eating tacos?'
+# 	answer = gets.chomp.downcase
+# 	if answer == 'yes'
+# 	  yes = yes + 1
+# 	  break
+# 	elsif
+# 	  answer == 'no'
+# 	  no = no + 1
+# 	  break
+# 	else
+# 		puts "Please answer yes or no"
+#   end
+# end 
 
-while true
-	puts 'Do you like eating burritos?'
-	answer = gets.chomp.downcase
-	if answer == 'yes'
-	  yes = yes + 1
-	  break
-	elsif
-	  answer == 'no'
-	  no = no + 1
-	  break
-	else
-		puts "Please answer yes or no" 
-  end
-end
+# puts
 
-puts 
+# while true
+# 	puts 'Do you like eating burritos?'
+# 	answer = gets.chomp.downcase
+# 	if answer == 'yes'
+# 	  yes = yes + 1
+# 	  break
+# 	elsif
+# 	  answer == 'no'
+# 	  no = no + 1
+# 	  break
+# 	else
+# 		puts "Please answer yes or no" 
+#   end
+# end
 
-while true
-	puts 'Do you wet the bed?'
-	answer = gets.chomp.downcase
-	if answer == 'yes'
-	  wets_bed = true
-	  break
-	elsif 
-		answer == 'no'
-	  wets_bed = false
-	  break
-	else
-		puts "Please answer yes or no"
-  end
-end
+# puts 
 
-puts
+# while true
+# 	puts 'Do you wet the bed?'
+# 	answer = gets.chomp.downcase
+# 	if answer == 'yes'
+# 	  wets_bed = true
+# 	  break
+# 	elsif 
+# 		answer == 'no'
+# 	  wets_bed = false
+# 	  break
+# 	else
+# 		puts "Please answer yes or no"
+#   end
+# end
 
-while true
-	puts 'Do you like eating nachos?'
-	answer = gets.chomp.downcase
-	if answer == 'yes'
-	  yes = yes + 1
-	  break
-	elsif
-	  answer == 'no'
-	  no = no + 1
-	  break
-	else
-		puts "Please answer yes or no"
-  end
-end
+# puts
 
-result = yes <=> no
+# while true
+# 	puts 'Do you like eating nachos?'
+# 	answer = gets.chomp.downcase
+# 	if answer == 'yes'
+# 	  yes = yes + 1
+# 	  break
+# 	elsif
+# 	  answer == 'no'
+# 	  no = no + 1
+# 	  break
+# 	else
+# 		puts "Please answer yes or no"
+#   end
+# end
+
+# result = yes <=> no
 
 
-puts
-puts "Debriefing...."
-puts "Thank you for taking the time to help with this experiment"
-puts "Here are the results"
-puts
+# puts
+# puts "Debriefing...."
+# puts "Thank you for taking the time to help with this experiment"
+# puts "Here are the results"
+# puts
 
-if result == 1
-	puts "You like Mexican Food"
-else
-	puts "You don't really like Mexican Food"
-end
+# if result == 1
+# 	puts "You like Mexican Food"
+# else
+# 	puts "You don't really like Mexican Food"
+# end
 
-if wets_bed == true
-	puts "And you also wet the bed? Gross"
-else
-	puts "And good for you, you don't wet the bed."
-end
+# if wets_bed == true
+# 	puts "And you also wet the bed? Gross"
+# else
+# 	puts "And good for you, you don't wet the bed."
+# end
 
 # That was a really long and ugly program with lots of repetition. 
 # All the sections of code around the questions about Mexican food 
@@ -379,3 +378,284 @@ end
 
 # puts say_moo(1000)
 # puts say_moo
+
+# number_of_moos is a variable that points to the parameter passed in. Say that 
+# again so it sinks in, number_of_moos is a variable that points to the 
+# parameter passed in. The parameter is now required. If we didn't pass it to 
+# the method when we called it, it won't know what to multiply it with. Your
+# poor computer has no idea.
+
+# 9.2 Local Variables.
+
+# The following program has two variables: number and number_times_2 
+
+# def double_this(number)
+# 	number_times_2 = number * 2
+# 	puts "#{number} doubled is #{number_times_2}"
+# end
+
+# double_this(44)
+
+# These variables both sit inside the double_this method. These (and any 
+# any other variables you've seen so far) are 'local variables'. This 
+# means that they live inside the method. If they try to leave the method
+# you'll get an error. They are local to the method!
+
+# def double_this(number)
+# 	number_times_2 = number * 2
+# 	puts "#{number} doubled is #{number_times_2}"
+# end
+
+# double_this(44)
+# puts number_times_2 #<NameError: undefined local variable ‘num_times_2'>
+
+# Undefined local variable...In fact, we did define that local variable, but
+# it isn't local to where we tired to use it; its local to only inside the 
+# method. 
+
+# This might seem inconvenient, but its actually quite nice. Although it does
+# mean you have no access to variables inside the method, it also means they 
+# have no access to 'your' variables and thus can't screw them up. 
+
+# tough_variable = "You can't touch this"
+
+# def little_pest(tough_variable)
+# 	tough_variable = nil
+# 	puts "Haha! I ruined your variable"
+# end
+
+# little_pest(tough_variable)
+# puts tough_variable
+
+# In fact, two variables in that little program are name tough_variable; one
+# inside little_pest and one outside of it. They don't communicate, can't for 
+# that matter. When we call an instance of little_pest, it uses its own
+# local variables, ignoring the original tough_variable we called at the top.
+
+# 9.3 Experiment: Duby
+
+# Ok, so local variables are a neat trick...but what's the point, right? 
+# To show the full effects of the importance of local variables lets use 
+# an example of a fake language, Duby. Duby is just like Ruby except all
+# variables live in the same scope. Example:
+
+# def square(x)
+# 	puts ( x * x )
+# end
+
+# x = 5
+# square(x)
+# my_number = 5
+# square(my_number)
+# puts "X is equal to #{x}"
+# x = 10
+# my_number = x / 2
+# square(my_number)
+# puts "X is now equal to #{x}"
+
+#  9.4 Return Values 
+
+# You may have noticed that some methods give you something back when you call
+# them. For example, gets returns a string (the one you typed in) and the +
+# in 5 + 3 returns 8. Buts its important to know the difference between your
+# program returning something back to the program and it printing it to the 
+# screen. 
+
+# puts 5 + 5 
+# 5 + 5 # still the same result but not printed just an object
+
+# But what does puts return, we never cared before so lets look at it now. 
+
+# return_value = puts 'This puts returned:'
+# puts return_value
+
+
+# The first puts returned 'nil', Though we didn't test it, the second puts did 
+# too. puts always returns nil. Every method returns something, even if its 
+# just nil. 
+
+# Take a second and write a program to find out what say_moo returns. 
+
+# def say_moo(number)
+# 	puts "Mooo..." * number
+# 	puts say_moo(5)
+# end
+
+# say_moo(5)
+
+# Heres how it works. The value returned from a method is simply the last 
+# expression evaluated in the method (usually just the last line of the 
+# method).  In the case of say_moo, this means it returns puts 
+# 'moooooo' * number, which is just nil since puts always returns nil. If 
+# we waned all our methods to return the string 'yellow submarine', we
+# woould simply need to put that at the end of the method, like this:
+
+# def say_moo(number)
+# 	puts 'Moo....' * number
+# 	'yellow submarine'
+# end
+
+# x = say_moo(200)
+# puts x.capitalize + "Dude..."
+# puts x
+
+# Be careful when using this though, its possible for hte last line to be
+# only a small part of the expression and its also possible for the last
+# expression not to be evaluated at all if the method has an explicit return
+# (escaping the method before it gets evaluted.)
+
+# def favourite_food(name)
+# 	if name == 'Lister'
+# 		return 'vindaloo'
+# 	end
+
+# 	if name == 'Rimmer'
+# 		return 'mashed potatoes'
+# 	end
+
+# 	'hard to say...maybe pizza pockets'
+# end
+
+# def favourite_drink(name)
+# 	if name == 'Jean'
+# 		'tea, Earl Grey'
+# 	elsif name == 'Kathryn'
+# 		'coffee, black'
+# 	else
+# 		'perhaps...coke'
+# 	end
+# end
+
+# puts favourite_food('Rimmer')
+# puts favourite_food('Lister')
+# puts favourite_food('Cher')
+# puts favourite_drink('Kathryn')
+# puts favourite_drink('Oprah')
+# puts favourite_drink('Jean')
+			
+# Pay attention to the results. In favourite foods, we used explicit returns
+# and in drink we didn't. Depending on the feel of the code, Chris uses either. 
+# To prune off special cases, Chris tends to use returns and leave the 
+# general case on the last line. If he tends to believe that all the options
+# are of equal importance, he uses else ifs. Have the code reflect your intent,
+# don't just stick to one style. 
+
+# Ok, now that we can write out own methods, lets try that psych experiment 
+# again. 
+
+# def ask(question)
+# 	while true
+# 		puts question
+# 		reply = gets.chomp.downcase
+
+# 		if (reply == 'yes' || reply == 'no')
+# 		  if reply == 'yes'
+# 		  	answer = true
+# 		  else
+# 		  	answer = false
+# 		  end
+# 		  break
+# 		else
+# 		  puts "Please answer yes or no"
+# 		end
+# 	end
+
+# 	answer
+# end
+
+# ask("Do you like Tacos")
+# ask("Do you like burritos")
+# wet_bed = ask("Do you wet the bed?")
+
+# puts wet_bed
+
+#  9.5 A Few Things to Try
+
+# Improved ask method. That ask method I showed you was OK, but I
+# bet you could do better. Try to clean it up by removing the answer
+# variable. You’ll have to use return to exit from the loop. (Well, it will
+# get you out of the whole method, but it will get you out of the loop
+# in the process.) How do you like the resulting method? I usually
+# try to avoid using return (a personal preference), but I might make
+# an exception here.
+
+# def ask(question)
+# 	while true
+# 		puts question
+# 		reply = gets.chomp.downcase
+
+# 		return true if reply == 'yes'
+# 		return false if reply == 'no'
+
+# 		puts "Please answer yes or no"
+# 	end
+# end
+
+# ask("Do you like Tacos")
+# ask("Do you like burritos")
+# wet_bed = ask("Do you wet the bed?")
+
+# puts wet_bed
+
+
+
+
+# Old-school Roman numerals. 
+
+# In the early days of Roman numerals,
+# the Romans didn’t bother with any of this new-fangled subtraction
+# “IX” nonsense. No sir, it was straight addition, biggest
+# to littlest—so 9 was written “VIIII,” and so on. Write a method
+# that when passed an integer between 1 and 3000 (or so) returns a
+# string containing the proper old-school Roman numeral. In other
+# words, old_roman_numeral 4 should return 'IIII'. Make sure to test
+# your method on a bunch of different numbers. Hint: Use the integer
+# division and modulus methods on page 37.
+# For reference, these are the values of the letters used:
+# I = 1 V = 5 X = 10 L = 50
+# C = 100 D = 500 M = 1000
+
+# def roman_numerals(year)
+# 	roman = []
+# 	roman[0] = 'M' * (year / 1000)
+# 	roman[1] = 'D' * ((year % 1000) / 500)
+# 	roman[2] = 'C' * ((year % 500)  / 100)
+# 	roman[3] = 'L' * ((year % 100)  / 50)
+# 	roman[4] = 'X' * ((year % 50)   / 10)
+# 	roman[5] = 'V' * ((year % 10)   / 5)
+# 	roman[6] = 'I' * ((year % 5)    / 1)
+
+#   conversion = roman.join('')
+#   puts conversion
+# end
+
+# roman_numerals(1993)
+# puts 
+# roman_numerals(1734)
+# puts 
+# roman_numerals(1876)
+
+# • Leap years. Write a program that asks for a starting year and an
+# ending year and then puts all the leap years between them (and
+# including them, if they are also leap years). Leap years are years
+# divisible by 4 (like 1984 and 2004). However, years divisible by
+# 100 are not leap years (such as 1800 and 1900) unless they are
+# also divisible by 400 (such
+
+# puts "Do you want to know all the leap years between two years?"
+# puts "Pick a starting year!"
+# start = gets.chomp.to_i
+# puts "Pick a finishing year"
+# finish = gets.chomp.to_i
+
+
+# year = start
+# while year <= finish
+# 	if year % 4 == 0
+# 		if (year % 100 != 0) || (year % 400 == 0)
+# 			puts year
+# 		end
+# 	end
+# 	year = year + 1	
+# end
+
