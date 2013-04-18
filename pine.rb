@@ -1947,6 +1947,463 @@
 # new and initialize is a bit subtle. And 'subtle' may as well mean 'confusing'
 # Just what is the deal? 
 
+# The methods new and initialize work hand in hand. You use new to create a new
+# instance of that object and initialize is then call automatically (if you 
+# defined it in your class). That pretty much happened at the same time. How
+# do you keep them straight? First, new is a method of the class, while
+# initialize is a method of the 'instance'. You use new to create that instance
+# and initialize is automatically called on that instance. That means the new
+# call must come first. Or in more nerdier terms, Hyperdrive is initialized 
+# after we already have a hyperdrive, now before. Hyperdrive has to exist 
+# before we can initialize it. 
+
+# Second, you define initialize in your class, but you never define new. It's
+# already built into all your classes. Conversely, you call new to create an
+# object, but you never call initialize. The method new takes care of that
+# for you. 
+
+# Strictly speaking, it is possible for you to call initialize, just as its
+# possib;e to define new. But doing so is either very advanced or very stupid.
+# Or both, so lets not even go there.
+
+# The reason for having these two separate methods is that you really need
+# one of them to be a class method and the other to be an instance method. If
+# you think about it, new has to be a class method, because when you want to
+# create an object, the object you want does not exist yet. You can't say
+# for example, the following:
+
+# die.new
+
+# because die doesn't exist yet. 
+
+# And initialize reall has to be an instance method, because you are initializing
+# that object. This means that you need access to the instance variables and
+# such. You can't do that from a class method, because it wouldn't know which
+# instance to get the instance variables from. 
+
+# So just remember, you define the instance method initialize, you call the 
+# class method new (and not other way around). 
+
+# 13.5 Baby Dragon
+
+# Great, you know how to create your own classes, even some of the subtle
+# bits, but so far you've really only seen a small fluffy, toy example. To 
+# get our heads around the whole package, we are going to build a giant
+# dragon. 
+
+# class Dragon
+
+# 	def initialize(name)
+# 		@name = name
+# 		@asleep = false
+# 		@stuff_in_belly = 10
+# 		@stuff_in_intestine = 0
+# 		puts "#{@name} is born!"
+# 	end
+
+# 	def feed
+# 		puts "You feed #{@name}"
+# 		@stuff_in_belly = 10
+# 		passage_of_time
+# 	end
+
+# 	def walk
+# 		puts "You walk #{@name}"
+# 		@stuff_in_intestine = 0
+# 		passage_of_time
+# 	end
+
+# 	def put_to_bed
+# 		puts "You put #{@name} to bed"
+# 		@asleep = true
+# 		3.times do
+# 			if @asleep
+# 				passage_of_time
+# 			end
+# 			if @asleep
+# 				puts "Zzz..."
+# 			end
+# 		end
+# 		if @asleep = false
+# 			puts "#{@name} wakes up slowly"
+# 		end
+# 	end
+
+# 	def toss
+# 		puts "You toss #{@name} up into the air"
+# 		puts "He giggles, which singes your eyebrow"
+# 		passage_of_time
+# 	end
+
+# 	def rock
+# 		puts "You rock #{@name} gently"
+# 		@asleep = true
+# 		puts 'He briefly dozes of....'
+# 		passage_of_time
+# 		if @asleep
+# 			@asleep = false
+# 			puts '...but wakes when you stop'
+# 		end
+# 	end
+
+# 	private
+
+# 	def hungry?
+# 		@stuff_in_belly <= 2
+# 	end
+
+# 	def poopy?
+# 		@stuff_in_intestine >= 8
+# 	end
+
+# 	def passage_of_time
+# 		if @stuff_in_belly > 0
+# 			@stuff_in_belly = @stuff_in_belly -1
+# 			@stuff_in_intestine = @stuff_in_intestine + 1
+# 		else
+# 			if @asleep
+# 				@asleep = false
+# 				puts 'He wakes up suddenly'
+# 			end
+# 			puts "#{@name} is starving! In desperation, he ate YOU!"
+# 			exit
+# 		end
+
+# 		if @stuff_in_intestine >= 10
+# 			@stuff_in_intestine = 0
+# 			puts "Whoops #{@name} had an accident"
+# 		end
+
+# 		if hungry? 
+# 			if @asleep
+# 				@asleep = false
+# 				puts 'He wakes up suddenly!'
+# 			end
+# 			puts "#{@name}'s stomach grumbles..."
+# 		end
+
+# 		if poopy?
+# 			if @asleep
+# 				@asleep = false
+# 				puts 'He wakes up suddenly!'
+# 			end
+# 			puts "#{@name} does the potty dance..."
+# 		end
+# 	end
+
+# end
+
+# pet = Dragon.new 'Norbert'
+# pet.feed
+# pet.toss
+# pet.walk
+# pet.put_to_bed
+# pet.rock
+# pet.put_to_bed
+# pet.put_to_bed
+# pet.put_to_bed
+# pet.put_to_bed
+
+# We saw a few new things in this example. The first is the word private that
+# we stuck right in the middle of our class definition. I could have left it
+# out but I wanted to enforce the idea that certain methods are things you 
+# can do to a dragon and other methods are used only within the dragon. 
+# You can think of these being 'under the hood'. 
+# I like to think of this in terms of a person object. Some methods are 
+# private and not to be called by people outside. 
+
+
+# • Orange tree. Make an OrangeTree class that has a height method
+# that returns its height and a one_year_passes method that, when
+# called, ages the tree one year. Each year the tree grows taller (however
+# much you think an orange tree should grow in a year), and
+# after some number of years (again, your call) the tree should die.
+# For the first few years, it should not produce fruit, but after a while
+# it should, and I guess that older trees produce more each year
+# than younger trees...whatever you think makes the most sense.
+# And, of course, you should be able to count_the_oranges (which
+# returns the number of oranges on the tree) and pick_an_orange
+# (which reduces the @orange_count by 1 and returns a string telling
+# you how delicious the orange was, or else it just tells you that there
+# are no more oranges to pick this year). Make sure any oranges you
+# don’t pick one year fall off before the next year.
+
+# class OrangeTree
+
+#   def initialize
+#   	@height = 0
+#   	@fruit  = 0
+#   	@age    = 0
+#   end
+
+#   def age
+#     @age = @age + 1
+#     puts "...one year has past..."
+#     puts "Your Tree is now #{@age}\n\n"
+#     tree_death
+#     fruit
+#     height
+#   end
+
+#   def fruit
+#   	if @age < 3
+#   		@fruit = 0
+#   		puts "Your Tree is too young to grow fruit. But soon."
+#   	elsif @age > 3 && @age < 5
+#   		@fruit = rand(1..4)
+#   		puts "This tree has #{@fruit} oranges"
+#   	elsif @age > 5 && @age < 7
+#   		@fruit = rand(0..9)
+#   		puts "This tree has #{@fruit} oranges"
+#   	elsif @age > 7 && @age < 10
+#   		@fruit = rand(0..14)
+#   		puts "This tree has #{@fruit} oranges"
+#   	elsif @age > 10 && @age < 12
+#   		@fruit = rand(1..7)
+#   		puts "This tree has #{@fruit} oranges"
+#   	elsif @age > 12
+#   		@fruit = rand(0..3)
+#   		puts "This tree has #{@fruit} oranges"
+#   	else
+#   		tree_death
+#   	end
+#   end
+
+#   def height
+#   	@height = @height + rand(0..3)
+#   	if @height < 10
+#   	  puts "This orange tree is now #{@height} feet tall"
+#     elsif @height == 10
+#     	puts "You tree has stopped growing and remains at 10 feet tall."
+#     else
+#     	tree_death
+#     end
+#   end
+
+#   def tree_death
+#   	if @age == rand(15..18)
+#   		puts "Sadly your tree has died"
+#   		exit
+#   	end
+#   end
+
+#   def pick_fruit
+#   	@fruit = @fruit - 1
+#   	puts "Mmm...delicious. Your tree now has #{@fruit} oranges on it"
+#   end
+
+#   def some_for_friends
+#   	@fruit = @fruit - rand(5..12)
+#   	puts "Here is #{@fruit} oranges for your friends."
+#   end
+
+#   def count_fruit
+#   	puts "There is currently #{@fruit} oranges on the tree"
+#   end
+
+# end
+
+# backyard = OrangeTree.new
+
+
+# backyard.age
+# backyard.age
+# backyard.age
+# backyard.age
+# backyard.age
+# backyard.fruit
+# backyard.pick_fruit
+# backyard.age
+# backyard.age
+# backyard.age
+# backyard.count_fruit
+# backyard.some_for_friends
+# backyard.age
+# backyard.age
+# backyard.age
+# backyard.pick_fruit
+# backyard.count_fruit
+# backyard.age
+# backyard.pick_fruit
+# backyard.age
+# backyard.age
+# backyard.age
+
+
+# class Dragon
+
+# 	def initialize name
+# 		@name = name
+# 		@asleep = false
+# 		@stuff_in_belly = 10
+# 		@stuff_in_intestine = 0
+# 		puts "#{@name} is born"
+# 		start
+# 	end
+
+
+# 	def start
+# 		puts "Pick something for you and your new Dragon to do?"
+#     puts "You can feed, walk, put to bed, toss, rock or forget it?"
+#     activity = gets.chomp.downcase
+#     method_dispatch(activity)
+# 	end
+
+
+# 	def method_dispatch(activity)
+# 		if activity == 'feed'
+# 			feed
+# 			start
+# 		elsif activity == 'walk'
+# 			walk
+# 			start
+# 		elsif activity == 'bed'
+# 			put_to_bed
+# 			start
+# 		elsif activity == 'toss'
+# 			toss
+# 			start
+# 		elsif activity == 'rock'
+# 			rock
+# 			start
+# 		elsif activity == 'forget it'
+# 			finish
+# 		else
+# 			"I didn't catch that? Try again"
+# 			start
+# 		end	
+# 	end
+
+# 	def feed
+# 		puts "You feed #{@name}"
+# 		@stuff_in_belly = 10
+# 		passage_of_time
+# 	end
+
+# 	def walk
+# 		puts "You walk #{@name}"
+# 		@stuff_in_intestine = 0
+# 		passage_of_time
+# 	end
+
+# 	def put_to_bed
+# 		puts "You put #{@name} to bed"
+# 		@asleep = true
+# 		3.times do
+# 			if @asleep
+# 				passage_of_time
+# 			end
+# 			if @asleep
+# 				puts "Zzz..."
+# 			end
+# 		end
+# 		if @asleep == false
+# 			puts "#{@name} wakes up slowly"
+# 		end
+# 	end
+
+# 	def toss
+# 		puts "You toss #{@name} up into the air"
+# 		puts "He giggles, which singes your eyebrow"
+# 		passage_of_time
+# 	end
+
+# 	def rock
+# 		puts "You rock #{@name} gently"
+# 		@asleep = true
+# 		puts 'He briefly dozes of....'
+# 		passage_of_time
+# 		if @asleep
+# 			@asleep = false
+# 			puts '...but wakes when you stop'
+# 		end
+# 	end
+
+# 	private
+
+# 	def hungry?
+# 		@stuff_in_belly <= 2
+# 	end
+
+# 	def poopy?
+# 		@stuff_in_intestine >= 8
+# 	end
+
+# 	def passage_of_time
+# 		if @stuff_in_belly > 0
+# 			@stuff_in_belly = @stuff_in_belly -1
+# 			@stuff_in_intestine = @stuff_in_intestine + 1
+# 		else
+# 			if @asleep
+# 				@asleep = false
+# 				puts 'He wakes up suddenly'
+# 			end
+# 			puts "#{@name} is starving! In desperation, he ate YOU!"
+# 			exit
+# 		end
+
+# 		if @stuff_in_intestine >= 10
+# 			@stuff_in_intestine = 0
+# 			puts "Whoops #{@name} had an accident"
+# 		end
+
+# 		if hungry? 
+# 			if @asleep
+# 				@asleep = false
+# 				puts 'He wakes up suddenly!'
+# 			end
+# 			puts "#{@name}'s stomach grumbles..."
+# 		end
+
+# 		if poopy?
+# 			if @asleep
+# 				@asleep = false
+# 				puts 'He wakes up suddenly!'
+# 			end
+# 			puts "#{@name} does the potty dance..."
+# 		end
+# 	end
+
+# 	def finish
+# 		"See you later"
+# 	end
+# end
+
+# puts "What would like to name your Dragon?"
+# name = gets.chomp
+# a = Dragon.new(name)
+
+# Chapter 14 - Blocks and Procs
+
+# According to Chris, this is one of the coolest features of Ruby. Some
+# other languages have this feature but call it something else, like 
+# closures. 
+# A proc is a 'block' of code (code between the do and end). wrap it up
+# in an object (called a proc), store it in a variable or pass it to a
+# method, and run the code in the block whenever you feel like it.
+# So it's kind of like a method itself, except it isn't bound to an object,
+# it is an object) and you can store it and pass it around with any object.
+# Example
+
+# toast = Proc.new { puts "Cheers!" }
+
+# toast.call
+# toast.call
+# toast.call
+
+# do_you_like = Proc.new { |good_stuff| puts "I really like #{good_stuff}" }
+
+# do_you_like.call("Chocolate")
+# do_you_like.call("Ruby")
+# do_you_like.call("Watermelon")
+
+
+
+
+
+
+
+
 
 
 
