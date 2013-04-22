@@ -2397,15 +2397,257 @@
 # do_you_like.call("Ruby")
 # do_you_like.call("Watermelon")
 
-###
+# So great, we see and understand procs. But what's the point? Why not just
+# use methods. Well, because there are somethings that you simply can't do
+# with methods. For one, you can't pass methods into other methods. Also,
+# methods can't return other methods, but a method can return a proc. This
+# is cause procs are objects (methods aren't).
+
+# 14.1 Methods that take Procs
+
+# When we pass a proc into a method, we cna control how, if or how many
+# times we call the proc. For example, let's say we want to do something 
+# before and after some code is run:
+
+# def do_self_importantly(some_proc)
+# 	puts "Everybody just HOLD ON I'm doing something"
+#   some_proc.call
+#   puts "Ok everyone, I'm done. As you were"
+# end
+
+# say_hello = Proc.new do
+# puts "Mike Check, 1, 2, 1, 2"
+# end 
+
+# say_goodbye = Proc.new do
+# puts "Check you later, sucker MC's"
+# end
+
+# do_self_importantly(say_hello)
+# do_self_importantly(say_goodbye)
+
+# Maybe that doesn't appear that fabulous...but it is! Its all to common
+# in programming to have strict requirements about what must be done when.
+# You can also write methods tha will determine how many times (or even 
+# whether to call a proc.) Here's a method that will call the proc passed
+# in about half of the time and another that will call it twice:
+
+# def maybe_do(proc)
+# 	if rand(2) == 0
+# 		proc.call
+# 	end
+# end
+
+# def twice_do(other)
+#   other.call
+#   other.call
+# end
+
+# wink = Proc.new do
+# 	puts '<wink>'
+# end
+
+# glance = Proc.new do
+# 	puts '<glance>'
+# end
+
+# maybe_do(wink)
+# maybe_do(glance)
+# maybe_do(wink)
+# maybe_do(wink)
+# maybe_do(glance)
+# maybe_do(glance)
+# maybe_do(wink)
+# maybe_do(wink)
+# maybe_do(wink)
+
+# These are some of the more common uses of procs that enable us to do things
+# that we simply could not have done using methods alone. Sure, you could 
+# write a method to wink twice, but you couldn't write one to just do something
+# twice. 
+
+# Before we move on, lets look at one last example. So far the procs we have
+# passed in have been fairly similar to each other. This time they will be
+# quite different, so you can see how much such a method depends on the 
+# procs passed in. Our method will take some object and a proc and will call 
+# the proc on that object. If the proc returns false, we quit; otherwise,
+# we call the proc with the returned object. We keep doing this until the 
+# proc returns false. The method will return the last non-false value returned
+# by the proc. 
+
+# def do_until_false(first_input, some_proc)
+# 	input  = first_input
+# 	output = first_input
+
+# 	while output
+# 		input = output
+# 		output = some_proc.call(input)
+# 	end
+
+# 	input
+# end
+
+# build_array_of_squares = Proc.new do |array|
+# 	last_number = array.last
+# 	if last_number <= 0
+# 		false
+# 	else
+# 		array.pop
+# 		array.push last_number * last_number
+# 		array.push last_number - 1
+# 	end
+# end
+
+# always_false = Proc.new do |just_ignore_me| 
+# 	false
+# end
 
 
+# puts do_until_false([5], build_array_of_squares).inspect
+
+# yum = 'lemonade with a hint of orange blossom water'
+# puts do_until_false(yum, always_false)
+
+# Ok, so that was a pretty 
+# weird example but it shows how differently our
+# method acts when given very different procs. 
+
+# The inspect method is a lot like .to_s, except the string it returns tries
+# to show you the ruby code for building the object you passed it. Here
+# if shows us the whole array returned by our first call to do_until_false. 
+# Also, you might have noticed that never actually squared that 0 on the end
+# of that array, but since 0 squared is still just 0, we didn't have to do 
+# this. And since always_false was, you know, always false, do_until_false
+# didn't do anything at all the second time we called it; it just returned
+# what was passed in. 
+
+# Methods that Return Procs
+
+# One of the cool things you can do with procs is create them in methods
+# and return them. This allows for all sorts of crazy programming powers
+# (things with impressive names, such as lazy evaluation, infinite data 
+# structures and curryig). I don't actually do these things very often, but
+# they are just about the sexiest programming techniques around. 
+
+# In this example, compose takes two procs and returns a new proc that
+# when called, calls the first proc and passes its result into the second. 
+
+# def compose(proc1, proc2)
+# 	Proc.new do |x|
+# 		proc2.call(proc1.call(x))
+# 	end
+# end
+
+# square_it = Proc.new do |x|
+# 	x * x
+# end
+
+# double_it = Proc.new do |x|
+# 	x + x
+# end
+
+# double_then_square = compose(double_it, square_it)
+# square_then_double = compose(square_it, double_it)
+
+# puts double_then_square.call(5)
+# puts square_then_double.call(5)
+
+# 14.3 Passing Blocks (Not Procs) into Methods
+
+# Ok, so this has been more theoretically cool than actually cool, partly
+# because this is all a bit of a hassle to use. I'm man enough to admit that.
+# A lof of the problem is that we have to go through three steps (defining
+# the method, making the proc, and then calling the method with the proc) 
+# when it sort of feels like there should be only two (defining the method
+# and passing the block of code right into the method, without using a proc
+# at all), since most of the time you don't want to use the proc/block after
+# you pass it into the method. It should be...more like how iterators work...
 
 
+# class Array
 
+# 	def each_even(&was_a_block_now_a_proc)
+# 		is_even = true
 
+# 		self.each do |object|
+# 			if is_even
+# 				was_a_block_now_a_proc.call(object)
+# 			end
 
+# 			is_even = !is_even
+# 		end
+# 	end
 
+# end
 
+# fruits = ["apple", "bad apple", "cherry", "durian"]
+# fruits.each_even do |fruit|
+# 	puts "Yum, I just love #{fruit} pies, don't you?"
+# end
 
+# # Remember, we are getting the even numbered 'elements' of the array, which
+# # in this case are all odd numbers, because I live to only irritate you.
+# [1, 2, 3, 4, 5].each_even do |odd_ball|
+# 	puts "#{odd_ball} is not an even number"
+# end
 
+# To pass in a block to each_even, all we had to do was stick the block after
+# after the method. You can pass a block into any method this way, though many
+# methods will just ignore the block. In order to make you method not ignore
+# the block but grab it and turn it into a proc, put the name of the proc at 
+# the end of your methods parameter list, preceded by ampersand(&). So, that
+# part is a little tricky but not too bad, and you have to that only once (when
+# you define the method). Then you can use the method over and over again, 
+# just like the built in methods that take blocks, such as each and times
+
+# If you get confused (I mean, there's this each and its block inside the
+# each_even), just remember what each_even is supposed to do: call the block
+# passed in with every other element in the array. Once you've written it 
+# and it works, you don't need to think about what it's actually doing under
+# the hood ("which block is called when?"); in fact, that's exactly why we
+# write methods like this - so we never have to think about how they work 
+# again. We just use them. 
+
+# I remember one time I wanted to profile some code I was writing;
+# you know, I wanted to time how long it took to run. I wrote a method that 
+# takes the time before running the code block and then runs it, then takes 
+# the time again at the end, and finally figures out the difference. And it
+# wne a little something like this. 
+
+# def profile(block_description, &block)
+# 	start_time = Time.new
+# 	block.call
+# 	duration = Time.new - start_time
+# 	puts "#{block_description}: #{duration} seconds"
+# end
+
+# profile '25000 doublings' do
+# 	number = 1
+# 	25000.times do 
+# 		number = number + number
+# end
+
+# 	puts "#{number.to_s.length} digits"
+# 	# Thats the number of digits in this hugh number.
+# end
+
+# profile 'count to a million' do
+# 	number = 0
+# 	1000000.times do
+# 		number = number + 1
+# 	end
+# end
+
+# How simple. With that tiny little method, we can now easily time any 
+# section of any program; we just throw the code in a block, send it to the 
+# profile and done. What could be simpler? 
+
+# 14.4 A Few Things to Try
+
+# • Even better profiling. After you do your profiling, see the slow parts
+# of your program, and either make them faster or learn to love them
+# as they are, you probably don’t want to see all of that profiling
+# anymore. But (I hope) you’re too lazy to go back and delete it
+# all...especially because you might want to use it again someday.
+# Modify the profile method so you can turn all profiling on and off
+# by changing just one line of code. Just one word!
